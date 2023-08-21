@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>D&D Character</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% if character %}
+        <h1>{{ character.name }}</h1>
+        <p>Level: {{ character.level }}</p>
+        <p>Race: {{ character.race }}</p>
+        <p>Class: {{ character.character_class }}</p>
+        <p>HP: {{ character.hp }}</p>
+        <h2>Ability Scores:</h2>
+        <ul>
+            {% for ability, score in character.abilities.items() %}
+                <li>{{ ability }}: {{ score }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No character created yet.</p>
+    {% endif %}
+    <a href="{{ url_for('create_character') }}">Create Character</a>
+</body>
+</html>
